@@ -1,0 +1,101 @@
+<div class="table-data">
+  <div class="order">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <!-- Panel de Búsqueda -->
+        <div class="card shadow mb-4">
+          <div class="card-header text-white cambio">
+            <h4 class="mb-0 text-center">Buscar Préstamos por Libro</h4>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center">
+              <div class="col-md-5">
+                <div class="form-group mb-3">
+                  <label for="libroId">ID del Libro</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="libroId"
+                    [(ngModel)]="libroId"
+                    placeholder="Ingresa el ID del libro"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3 d-flex align-items-end">
+                <button class="btn btn-primary w-100" (click)="listarPrestamos()">
+                  Buscar Préstamos
+                </button>
+              </div>
+              <div class="col-md-3 d-flex align-items-end">
+                <button class="btn btn-secondary w-100" (click)="reiniciarPrestamos()">
+                  Reiniciar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabla de Préstamos -->
+        <div class="card shadow">
+          <div class="card-header text-white cambio">
+            <h4 class="mb-0 text-center">Listado de Préstamos</h4>
+          </div>
+          <div class="card-body cambio-color">
+            <div class="form-group">
+              <a
+                class="btn btn-success mb-3"
+                data-bs-toggle="modal"
+                data-bs-target="#agregarPrestamoModal"
+                href="#"
+              >
+                Registrar Préstamo
+              </a>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover table-striped table-secondary">
+                <thead>
+                  <tr class="bg-light">
+                    <th>#</th>
+                    <th>Libro</th>
+                    <th>Fecha Préstamo</th>
+                    <th>Fecha Devolución</th>
+                    <th>Estado</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let p of prestamo; let i = index">
+                    <td>{{ p.idPrestamo }}</td>
+                    <td>{{ p.libro.titulo }}</td>
+                    <td>{{ p.fechaPrestamo | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ p.fechaDevolucion | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ p.estado }}</td>
+                    <td>
+                      <button
+                        class="btn btn-success"
+                        data-bs-toggle="modal"
+                        data-bs-target="#actualizarPrestamoModal"
+                        (click)="obtenerPrestamoId(p.idPrestamo)"
+                      >
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        class="btn btn-danger"
+                        (click)="eliminarPrestamo(p.idPrestamo)"
+                      >
+                        Suprimir
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<!-- Modal de Agregar Autor -->
+<div class="modal fade" id="actualizarLibroModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-dark">
+        <h5 class="modal-title">
+            Actualizar
+        </h5>
+        <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form [formGroup]="libroForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+          <div class="form-group mb-3">
+            <input type="hidden" formControlName="idLibro"/>
+            <label for="titulo">titulo</label>
+            <input
+              type="text"
+              formControlName="titulo"
+              class="form-control"
+              id="titulo"
+              [ngClass]="{'is-invalid': libroForm.get('titulo')?.invalid && libroForm.get('titulo')?.touched}"
+              required
+            />
+            <div class="invalid-feedback" *ngIf="libroForm.get('titulo')?.invalid && libroForm.get('titulo')?.touched">
+              El titulo es obligatorio.
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="idAutor">Autor</label>
+            <select
+              formControlName="idAutor"
+              class="form-control"
+              id="idAutor"
+              [ngClass]="{'is-invalid': libroForm.get('idAutor')?.invalid && libroForm.get('idAutor')?.touched}"
+              required>
+              <option value="">Seleccione un autor</option>
+              <option *ngFor="let autor of autores" [value]="autor.idAutor">{{ autor.nombre }}</option>
+            </select>
+            <div class="invalid-feedback" *ngIf="libroForm.get('idAutor')?.invalid && libroForm.get('idAutor')?.touched">
+              El autor es obligatorio.
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="isbn">isbn</label>
+            <input
+              type="text"
+              formControlName="isbn"
+              class="form-control"
+              id="isbn"
+              [ngClass]="{'is-invalid': libroForm.get('isbn')?.invalid && libroForm.get('isbn')?.touched}"
+              required
+            />
+            <div class="invalid-feedback" *ngIf="libroForm.get('isbn')?.invalid && libroForm.get('isbn')?.touched">
+              La isbn de nacimiento es obligatoria.
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="isbn">fecha Publicacion</label>
+            <input
+              type="date"
+              formControlName="fechaPublicacion"
+              class="form-control"
+              id="fechaPublicacion"
+              [ngClass]="{'is-invalid': libroForm.get('fechaPublicacion')?.invalid && libroForm.get('fechaPublicacion')?.touched}"
+              required
+            />
+            <div class="invalid-feedback" *ngIf="libroForm.get('fechaPublicacion')?.invalid && libroForm.get('fechaPublicacion')?.touched">
+              La fecha Publicacion de nacimiento es obligatoria.
+            </div>
+          </div>
+
+        <!-- Estado -->
+        <div class="form-group mb-3">
+          <label for="estado">Estado</label>
+          <select
+            formControlName="estado"
+            class="form-control"
+            id="estado"
+            [ngClass]="{'is-invalid': libroForm.get('estado')?.invalid && libroForm.get('estado')?.touched}"
+            required>
+            <option value="">Seleccione...</option>
+            <option value="DISPONIBLE">Disponible</option>
+            <option value="NO_DISPONIBLE">No Disponible</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="libroForm.get('estado')?.invalid && libroForm.get('estado')?.touched">
+            El estado es obligatorio.
+          </div>
+        </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">
+            Actualizar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

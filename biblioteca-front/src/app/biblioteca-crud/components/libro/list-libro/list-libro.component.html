@@ -1,0 +1,85 @@
+
+<div class="table-data">
+  <div class="row justify-content-center ">
+    <!-- Panel Lateral para Filtro -->
+    <div class="col-lg-4 ">
+      <div class="card shadow">
+        <div class="card-header cambio">
+          <h5 class="text-center mb-0">Verificar Disponibilidad</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group mb-3">
+            <label for="libroId">ID del Libro</label>
+            <input
+              type="number"
+              class="form-control"
+              id="libroId"
+              [(ngModel)]="libroId"
+              placeholder="Ingresa el ID del libro"
+            />
+          </div>
+          <button class="btn btn-primary w-100" (click)="verificarDisponibilidad()">
+            Verificar
+          </button>
+        </div>
+      </div>
+    </div>
+
+<div class="table-data">
+  <div class="order">
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="card shadow">
+          <div class="card-header text-white cambio">
+            <h4 class="mb-0 text-center">Listado de Libros</h4>
+          </div>
+          <div class="card-body cambio-color">
+            <div class="form-group">
+              <!-- Se abre el modal para registrar un autor -->
+              <a class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#agregarLibroModal" href="#">
+                Registrar Autor
+              </a>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover table-striped table-secondary">
+                <thead>
+                  <tr class="bg-light">
+                    <th>#</th>
+                    <th>Titulo</th>
+                    <th>Autor</th>
+                    <th>ISBN</th>
+                    <th>Fecha Publicación</th>
+                    <th>Estado</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let l of libro; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ l.titulo }}</td>
+                    <td>{{ l.autor.nombre }}</td>
+                    <td>{{ l.isbn }}</td>
+                    <td>{{ l.fechaPublicacion| date:'dd/MM/yyyy' }}</td>
+                    <td>{{ l.estado }}</td>
+                    <td>
+                      <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#actualizarLibroModal">
+                        <i class="fa-solid fa-pen-to-square"   (click)="obtenerLibroId(l.idLibro)" ></i>
+                      </button>
+                    </td>
+                    <td>
+                      <button class="btn btn-danger" (click)="eliminarAutor(l.idLibro)">
+                        Suprimir
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

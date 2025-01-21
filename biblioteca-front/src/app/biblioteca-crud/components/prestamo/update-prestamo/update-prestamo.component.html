@@ -1,0 +1,89 @@
+<!-- Modal de Agregar Autor -->
+<div class="modal fade" id="actualizarPrestamoModal" tabindex="-1" aria-hidden="true" #modalElement>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-dark">
+        <h5 class="modal-title">
+          Actualizar
+        </h5>
+        <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form [formGroup]="prestamoForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+          <div class="form-group mb-3">
+            <input type="hidden" formControlName="idPrestamo"/>
+            <label for="libro">Autor</label>
+            <select
+              formControlName="libroId"
+              class="form-control"
+              id="libroId"
+              [ngClass]="{'is-invalid': prestamoForm.get('libroId')?.invalid && prestamoForm.get('libroId')?.touched}"
+              required>
+              <option value="">Seleccione un libro</option>
+              <option *ngFor="let a of libros" [value]="a.idLibro">{{ a.titulo }}</option>
+            </select>
+            <div class="invalid-feedback" *ngIf="prestamoForm.get('libroId')?.invalid && prestamoForm.get('libroId')?.touched">
+              El libro es obligatorio.
+            </div>
+          </div>
+
+
+          <div class="form-group mb-3">
+            <label for="fechaPrestamo">fecha Prestamo</label>
+            <input
+              type="date"
+              formControlName="fechaPrestamo"
+              class="form-control"
+              id="fechaPrestamo"
+              [ngClass]="{'is-invalid': prestamoForm.get('fechaPrestamo')?.invalid && prestamoForm.get('fechaPrestamo')?.touched}"
+              required
+            />
+            <div class="invalid-feedback" *ngIf="prestamoForm.get('fechaPrestamo')?.invalid && prestamoForm.get('fechaPrestamo')?.touched">
+              La fecha Prestamo de nacimiento es obligatoria.
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="fechaDevolucion">fecha Devolucion</label>
+            <input
+              type="date"
+              formControlName="fechaDevolucion"
+              class="form-control"
+              id="fechaDevolucion"
+              [ngClass]="{'is-invalid': prestamoForm.get('fechaDevolucion')?.invalid && prestamoForm.get('fechaDevolucion')?.touched}"
+              required
+            />
+            <div class="invalid-feedback" *ngIf="prestamoForm.get('fechaDevolucion')?.invalid && prestamoForm.get('fechaDevolucion')?.touched">
+              La fecha Devolucion de nacimiento es obligatoria.
+            </div>
+          </div>
+
+        <!-- Estado -->
+        <div class="form-group mb-3">
+          <label for="estado">Estado</label>
+          <select
+            formControlName="estado"
+            class="form-control"
+            id="estado"
+            [ngClass]="{'is-invalid': prestamoForm.get('estado')?.invalid && prestamoForm.get('estado')?.touched}"
+            required>
+            <option value="">Seleccione...</option>
+            <option value="ACTIVO">Activo</option>
+            <option value="FINALIZADO">Finalizado</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="prestamoForm.get('estado')?.invalid && prestamoForm.get('estado')?.touched">
+            El estado es obligatorio.
+          </div>
+        </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">
+            Actualizar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

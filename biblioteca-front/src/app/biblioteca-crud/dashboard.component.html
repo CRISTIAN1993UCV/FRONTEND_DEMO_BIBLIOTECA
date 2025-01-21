@@ -1,0 +1,88 @@
+<section class="barra-lateral pagina-entera">
+  <!-- Logo: redirige al dashboard -->
+  <a routerLink="/dashboard" class="logo">
+    <i class="fab fa-slack"></i>
+    <span class="text">Biblioteca</span>
+  </a>
+
+  <!-- Menú lateral -->
+  <ul class="menu-lateral top">
+    <li routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">
+      <a routerLink="/dashboard/autor" class="enlace">
+        <i class="fas fa-user"></i>
+        <span class="text">Autor</span>
+      </a>
+    </li>
+    <li routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">
+      <a routerLink="/dashboard/libro" class="enlace">
+        <i class="fas fa-book"></i>
+        <span class="text">Libros</span>
+      </a>
+    </li>
+    <li routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">
+      <a routerLink="/dashboard/prestamo" class="enlace">
+        <i class="fa-brands fa-product-hunt"></i>
+        <span class="text">Prestamos</span>
+      </a>
+    </li>
+  </ul>
+</section>
+
+
+<section class="contenido pagina-entera">
+  <nav>
+    <i class="fas fa-bars menu-btn"></i>
+  </nav>
+
+  <main class="pagina-entera">
+    <div class="head-title">
+      <div class="left">
+        <h1>Dashboard</h1>
+        <ul class="breadcrumb">
+          <li>
+            <a href="#">Dashboard</a>
+          </li>
+          <i class="fas fa-chevron-right"></i>
+          <li>
+            <a href="#" class="activo">{{ paginaActual | titlecase }}</a>
+          </li>
+        </ul>
+      </div>
+
+
+    </div>
+
+    <div class="box-info">
+      <li>
+
+        <i class="fa-solid fa-people-group"></i>
+        <span class="text">
+          <h3>{{autoresTotales()}}</h3>
+          <p>Autores</p>
+        </span>
+
+      </li>
+      <li>
+        <i class="fas fa-book"></i>
+        <span class="text">
+          <h3>{{librosTotales()}}</h3>
+          <p>Libros</p>
+        </span>
+      </li>
+      <li>
+        <i class="fa-brands fa-product-hunt"></i>
+        <span class="text">
+          <h3>{{prestamosTotales()}}</h3>
+          <p>Prestamos</p>
+        </span>
+      </li>
+    </div>
+
+    <!-- table listados -->
+
+    <router-outlet/>
+  </main>
+
+
+
+</section>

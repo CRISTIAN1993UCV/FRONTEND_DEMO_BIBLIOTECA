@@ -1,0 +1,54 @@
+<div class="table-data">
+  <div class="order">
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="card shadow">
+          <div class="card-header text-white cambio">
+            <h4 class="mb-0 text-center">Listado de Autores</h4>
+          </div>
+          <div class="card-body cambio-color">
+            <div class="form-group">
+              <!-- Se abre el modal para registrar un autor -->
+              <a class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#agregarAutorModal" href="#">
+                Registrar Autor
+              </a>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover table-striped table-secondary">
+                <thead>
+                  <tr class="bg-light">
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Nacionalidad</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let autor of autor; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ autor.nombre }}</td>
+                    <td>{{ autor.nacionalidad }}</td>
+                    <td>{{ autor.fechaNacimiento | date:'dd/MM/yyyy' }}</td>
+                    <td>
+                      <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#actualizarAutorModal">
+                        <i class="fa-solid fa-pen-to-square"   (click)="obtenerAutorId(autor.idAutor)" ></i>
+                      </button>
+                    </td>
+                    <td>
+                      <button class="btn btn-danger" (click)="eliminarAutor(autor.idAutor)">
+                        Suprimir
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
